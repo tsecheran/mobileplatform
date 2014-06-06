@@ -13,9 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -25,7 +27,29 @@ public class SimpleActivity extends Activity {
 	List<String> todoList = new ArrayList<String>();
 	ListView listView1;
 	ArrayAdapter<String> itemsAdapter;
-
+	// Stores the position selected for editing
+	int selectedPosition = 0;
+	public void launchEditView(String inputText) {
+		Intent i = new Intent(this, EditItemActivity.class);
+		i.putExtra("editingText", inputText);
+		//startActivity(i);
+		startActivityForResult(i, 200);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(resultCode == 100 && requestCode == 200) {
+			// This is a edited text
+			todoList.remove(selectedPosition);
+			// Then put the edited text into that
+			todoList.add(selectedPosition, data.getStringExtra("editedText"));
+			selectedPosition = 0;
+			itemsAdapter.notifyDataSetChanged();
+			writeFile();
+		}
+		// TODO in case if it's delete, remove that item
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,8 +82,19 @@ public class SimpleActivity extends Activity {
 					int position, long id) {
 				todoList.remove(position);
 				itemsAdapter.notifyDataSetChanged();
+				// Ideally write only once when the app sleeps or getting closed, 
+				//TODO find out that on app close something
 				writeFile();
 				return true;
+			}
+		});
+		
+		listView1.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				selectedPosition = position;
+				launchEditView(todoList.get(position));
 			}
 		});
 	}
