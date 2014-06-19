@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Google Image Search App</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="searchhint">Search Term</string>
+    <string name="title_activity_display_image">DisplayImageActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="search_settings">Advanced Search Filters</string>
+    <string name="size">Image Size</string>
+
+    <string-array name="image_size_array">
+        <item>small</item>
+        <item>medium</item>
+        <item>large</item>
+    </string-array>
+
+    <string-array name="image_color_array">
+        <item>black</item>
+        <item>red</item>
+        <item>white</item>
+        <item>green</item>
+    </string-array>
+    
+    <string-array name="image_type_array">
+        <item>face</item>
+        <item>photo</item>
+        <item>clipart</item>
+    </string-array>
+    <string name="title_activity_settings_activity_new">SettingsActivityNew</string>
+
+</resources>
