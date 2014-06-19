@@ -6,7 +6,7 @@ Time spent: 10 hours spent in total
 
 Completed user stories:
 
- * [x] Complete infinite scrolling, filtering
+ * [x] Complete infinite scrolling, filtering, viewing the fullimage by clicking on it. 
  * [x] Optional: Used DialogFragment
  
 Notes:
