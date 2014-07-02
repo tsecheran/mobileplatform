@@ -24,9 +24,14 @@ import com.loopj.android.http.RequestParams;
  */
 public class SimpleTwtrClient extends OAuthBaseClient {
     public static final Class<? extends Api> REST_API_CLASS = TwitterApi.class; // Change this
-    public static final String REST_URL = "https://api.twitter.com/1.1"; // Change this, base API URL
-    public static final String REST_CONSUMER_KEY = "Qn74yvEHjdG93RpxJjupQAL2m";       // Change this
-    public static final String REST_CONSUMER_SECRET = "BV56PmSuyMLJYpasSGnwmz4zewBbU6UTrxyMaLUV8mvVOOK0fU"; // Change this
+    //public static final String REST_URL = "https://api.twitter.com/1.1"; // Change this, base API URL
+    //public static final String REST_CONSUMER_KEY = "Qn74yvEHjdG93RpxJjupQAL2m"; //"Qn74yvEHjdG93RpxJjupQAL2m";       // Change this
+    //public static final String REST_CONSUMER_SECRET = "BV56PmSuyMLJYpasSGnwmz4zewBbU6UTrxyMaLUV8mvVOOK0fU"; //"BV56PmSuyMLJYpasSGnwmz4zewBbU6UTrxyMaLUV8mvVOOK0fU"; // Change this
+    //public static final String REST_CALLBACK_URL = "oauth://cpbasictweets"; // Change this (here and in manifest)
+   
+    public static final String REST_URL = "https://api.twitter.com/1.1"; //"http://api.flickr.com/services"; // Change this, base API URL
+    public static final String REST_CONSUMER_KEY = "hbdKRWpnEcAo6zhsaXBSxFXin";       // Change this
+    public static final String REST_CONSUMER_SECRET = "lRWJDP8bsHySFu8hVeSeAKKrBc3EhqIB89tpFsFmu9cc53KJJ2"; // Change this
     public static final String REST_CALLBACK_URL = "oauth://cpbasictweets"; // Change this (here and in manifest)
     
     public static int sinceId = 0;
@@ -43,7 +48,7 @@ public class SimpleTwtrClient extends OAuthBaseClient {
     	client.get(url, params, respHandler);
     }
     
-    public void getHomeTimeLine(AsyncHttpResponseHandler respHandler, int sinceId, int maxId) {
+    public void getHomeTimeLine(AsyncHttpResponseHandler respHandler, int sinceId, long maxId) {
     	String url = getApiUrl("statuses/home_timeline.json");
     	RequestParams params = new RequestParams();
     	if(sinceId > 0) {
@@ -53,15 +58,17 @@ public class SimpleTwtrClient extends OAuthBaseClient {
     	}
     	
     	if(maxId > 0) {
-    		params.put("since_id", String.valueOf(maxId));
+    		params.put("max_id", String.valueOf(maxId));
     	} 
     	
     	client.get(url, params, respHandler);
     }
     
     public void getCurrentUserDetails(AsyncHttpResponseHandler respHandler) {
-    	String url = "users/show.json?screen_name=tsecheran";
-    	client.get(url, null, respHandler);
+    	String url = "users/show.json"; //?screen_name=tsecheran";
+    	RequestParams params = new RequestParams();
+        params.put("screen_name", "tsecheran");
+    	client.get(url, params, respHandler);
     }
     
     public void postTweet(String body, AsyncHttpResponseHandler handler) {
@@ -69,6 +76,23 @@ public class SimpleTwtrClient extends OAuthBaseClient {
         RequestParams params = new RequestParams();
         params.put("status", body);
         client.post(apiUrl, params, handler);
+    }
+    
+    public void getMentionsTimeLine(AsyncHttpResponseHandler respHandler) {
+    	String url = getApiUrl("statuses/mentions_timeline.json");
+    	RequestParams params = new RequestParams();
+    	params.put("since_id", "1");
+    	client.get(url, params, respHandler);
+    }
+    
+    public void getMyInfo(AsyncHttpResponseHandler respHandler) {
+    	String url = getApiUrl("account/verify_credentials.json");
+    	client.get(url, null, respHandler);
+    }
+    
+    public void getUserTimeLine(AsyncHttpResponseHandler respHandler) {
+    	String url = getApiUrl("statuses/user_timeline.json");
+    	client.get(url, null, respHandler);
     }
     
     // CHANGE THIS

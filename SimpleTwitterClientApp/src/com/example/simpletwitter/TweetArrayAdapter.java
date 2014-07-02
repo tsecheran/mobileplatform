@@ -1,6 +1,9 @@
 package com.example.simpletwitter;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import com.example.simpletwitter.models.Tweet;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -30,6 +33,7 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 			v = convertView;
 		}
 		ImageView imgIV = (ImageView) v.findViewById(R.id.ivProfileImage);
+		TextView tvRN = (TextView) v.findViewById(R.id.tvRealName);
 		TextView tvUN = (TextView) v.findViewById(R.id.tvScreenName);
 		TextView tvBdy = (TextView) v.findViewById(R.id.tvBody);
 		TextView tvCreated = (TextView) v.findViewById(R.id.tvCreatedAt);
@@ -37,6 +41,7 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 		
 		ImageLoader loader = ImageLoader.getInstance();
 		loader.displayImage(tweet.getUser().getImageUrl(), imgIV);
+		tvRN.setText(tweet.getUser().getName());
 		tvUN.setText("@" + tweet.getUser().getScreenName());
 		tvBdy.setText(tweet.getBody());
 		tvCreated.setText(tweet.getCreatedAt());

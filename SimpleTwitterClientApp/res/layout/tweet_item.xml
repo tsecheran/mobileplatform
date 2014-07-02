@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -9,22 +10,43 @@
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/ic_launcher" 
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+         />
+
+    <TextView
+        android:id="@+id/tvRealName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tvCreatedAt"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/ivProfileImage"
+        android:text="RealName" 
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:layout_marginRight="5dp"/>
 
     <TextView
         android:id="@+id/tvScreenName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/ivProfileImage"
-        android:text="\@foo" />
-
+        android:layout_toRightOf="@+id/tvRealName"
+        android:textStyle="italic"
+        android:textColor="@android:color/darker_gray"
+        android:text="\@foo"
+        android:textSize="10sp" />
+    
     <TextView
         android:id="@+id/tvBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvScreenName"
         android:layout_toRightOf="@+id/ivProfileImage"
+        android:autoLink="all"
+        android:textSize="11sp" />
         android:text="This is a tweet" />
 
     <TextView
@@ -33,6 +55,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:textSize="8sp"
+        android:textStyle="italic"
         android:text="TextView" />
 
 </RelativeLayout>
