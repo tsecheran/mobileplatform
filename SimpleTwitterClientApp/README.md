@@ -15,6 +15,8 @@ Still the posted tweet is not yet posted on the timeline activity, there is a pr
 
 Walkthrough of all user stories:
 
+![New App Video Walkthrough](twitter_new.gif)
+
 ![Video Walkthrough](twitter.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
