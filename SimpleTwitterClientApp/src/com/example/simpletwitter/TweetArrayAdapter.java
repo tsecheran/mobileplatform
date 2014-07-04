@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Locale;
 
 import com.example.simpletwitter.models.Tweet;
+import com.example.simpletwitter.models.User;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +20,14 @@ import android.widget.TextView;
 
 public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 
+	TweetItemListener listener = null;
 	public TweetArrayAdapter(Context context, List<Tweet> objects) {
 		super(context, 0, objects);
+	}
+	
+	public TweetArrayAdapter(Context context, List<Tweet> objects, Fragment fragment) {
+		super(context, 0, objects);
+		listener = (TweetItemListener) fragment;
 	}
 
 	@Override
@@ -45,8 +53,21 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 		tvUN.setText("@" + tweet.getUser().getScreenName());
 		tvBdy.setText(tweet.getBody());
 		tvCreated.setText(tweet.getCreatedAt());
+		imgIV.setTag(tweet.getUser());
+		imgIV.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				User user = (User) v.getTag();
+				listener.onCickUserProfile(user);
+			}
+		});
 		
 		return v;
+	}
+	
+	public interface TweetItemListener {
+		public void onCickUserProfile(User user);
+		public void onClickTweet();
 	}
 	
 }

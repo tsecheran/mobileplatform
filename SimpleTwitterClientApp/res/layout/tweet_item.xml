@@ -24,6 +24,7 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/ivProfileImage"
         android:text="RealName" 
+        android:layout_marginTop="5dp"
         android:textSize="10sp"
         android:textStyle="bold"
         android:layout_marginRight="5dp"/>
@@ -35,6 +36,7 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/tvRealName"
         android:textStyle="italic"
+        android:layout_marginTop="5dp"
         android:textColor="@android:color/darker_gray"
         android:text="\@foo"
         android:textSize="10sp" />
@@ -45,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvScreenName"
         android:layout_toRightOf="@+id/ivProfileImage"
+        android:layout_marginTop="10dp"
         android:autoLink="all"
         android:textSize="11sp" />
         android:text="This is a tweet" />
@@ -56,6 +59,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:textSize="8sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="2dp"
         android:textStyle="italic"
         android:text="TextView" />
 

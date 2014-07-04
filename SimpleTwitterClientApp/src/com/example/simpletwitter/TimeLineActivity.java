@@ -19,10 +19,11 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.activeandroid.util.Log;
-import com.example.simpletwitter.TweetDialogFragment.TweetDialogListener;
 import com.example.simpletwitter.fragments.HomeTimeLineFragment;
 import com.example.simpletwitter.fragments.MentionsTimeLineFragment;
+import com.example.simpletwitter.fragments.TweetDialogFragment;
 import com.example.simpletwitter.fragments.TweetListFragment;
+import com.example.simpletwitter.fragments.TweetDialogFragment.TweetDialogListener;
 import com.example.simpletwitter.listeners.FragmentTabListener;
 import com.example.simpletwitter.models.Tweet;
 import com.example.simpletwitter.models.User;
@@ -62,6 +63,7 @@ public class TimeLineActivity extends FragmentActivity implements TweetDialogLis
 	public void onProfileAction(MenuItem mi) {
 		Toast.makeText(this, "Getting Profile", Toast.LENGTH_SHORT).show();
 		Intent i = new Intent(this, ProfileActivity.class);
+		
 		startActivity(i);
 	}
 	
